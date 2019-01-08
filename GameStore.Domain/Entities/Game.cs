@@ -21,6 +21,10 @@ namespace GameStore.Domain.Entities
         [Required(ErrorMessage = "Пожалуйста, укажите жанр игры")]
         public string Genre { get; set; }
 
+        [Display(Name = "Издатель")]
+        [Required(ErrorMessage = "Пожалуйста, укажите издателя игры")]
+        public string Author { get; set; }
+
         [Display(Name = "Цена (руб)")]
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Пожалуйста, введите положительное значение для цены")]

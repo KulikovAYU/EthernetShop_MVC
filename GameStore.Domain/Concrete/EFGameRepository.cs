@@ -33,6 +33,7 @@ namespace GameStore.Domain.Concrete
                     dbEntry.Description = game.Description;
                     dbEntry.Price = game.Price;
                     dbEntry.Genre = game.Genre;
+                    dbEntry.Author = game.Author;
                     dbEntry.ImageData = game.ImageData;
                     dbEntry.ImageMimeType = game.ImageMimeType;
                 }

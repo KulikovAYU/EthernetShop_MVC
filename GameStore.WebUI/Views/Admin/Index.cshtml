@@ -15,6 +15,7 @@
                 <th class="text-right">ID</th>
                 <th>Название</th>
                 <th class="text-right">Цена</th>
+                <th class="text-right">Издатель</th>
                 <th class="text-center">Действия</th>
             </tr>
             @foreach (var item in Model)
@@ -23,6 +24,7 @@
                     <td class="text-right">@item.GameId</td>
                     <td>@Html.ActionLink(item.Name, "Edit", new { item.GameId })</td>
                     <td class="text-right">@item.Price.ToString("# руб")</td>
+                    <td class="text-right">@item.Author</td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))
                         {

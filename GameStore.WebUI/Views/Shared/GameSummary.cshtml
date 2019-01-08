@@ -10,10 +10,12 @@
         </div>
     }
 
-    <h3>
-        <strong>@Model.Name</strong>
-        <span class="pull-right label label-primary">@Model.Price.ToString("# руб")</span>
-    </h3>
+        <h3>
+            <strong>@Model.Name <br/>Издатель: @Model.Author</strong>
+          
+            <span class="pull-right label label-primary">@Model.Price.ToString("# руб")</span>
+           
+        </h3>
     @using (Html.BeginForm("AddToCart", "Cart"))
     {
         <div class="pull-right">
