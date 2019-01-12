@@ -1,31 +1,29 @@
 ﻿using System.Web.Mvc;
-using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
-using System.Linq;
 using System.Web;
+using GameStore.Domain.EMDB;
+using GameStore.Domain.EMDB.Repositories.Interfaces;
 
 namespace GameStore.WebUI.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
-        IGameRepository repository;
+        IGameRepo repository;
 
-        public AdminController (IGameRepository repo)
+        public AdminController (IUnitOfWork repo)
         {
-            repository = repo;
+            repository = repo.Games;
         }
 
         public ViewResult Index()
         {
-            return View(repository.Games);
+            return View(repository.GetAll());
         }
 
         public ViewResult Edit(int gameId)
         {
-            Game game = repository.Games
-                .FirstOrDefault(g => g.GameId == gameId);
-            return View(game);
+            return View(repository.Get(gameId));
         }
 
         [HttpPost]
@@ -58,7 +56,8 @@ namespace GameStore.WebUI.Controllers
         [HttpPost]
         public ActionResult Delete(int gameId)
         {
-            Game deletedGame = repository.DeleteGame(gameId);
+            Game deletedGame = null;
+            repository.RemoveGame(gameId,ref deletedGame);
             if (deletedGame != null)
             {
                 TempData["message"] = string.Format("Игра \"{0}\" была удалена",

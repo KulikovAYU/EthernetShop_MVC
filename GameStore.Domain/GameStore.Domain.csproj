@@ -75,11 +75,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IGameRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />
-    <Compile Include="Concrete\EFDbContext.cs" />
-    <Compile Include="Concrete\EFGameRepository.cs" />
+    <Compile Include="EMDB\Repositories\DBContext\EFDbContext.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
+    <Compile Include="EMDB\IUnitOfWork.cs" />
+    <Compile Include="EMDB\UnitOfWork.cs" />
+    <Compile Include="EMDB\Repositories\Classes\GameRepo.cs" />
+    <Compile Include="EMDB\Repositories\Classes\RepositoryBase.cs" />
+    <Compile Include="EMDB\Repositories\Interfaces\IGameRepo.cs" />
+    <Compile Include="EMDB\Repositories\Interfaces\IReporitoryBase.cs" />
+    <Compile Include="EMDButils\StaticHelper.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
@@ -93,6 +98,7 @@
     <Content Include="Queries\SQLQuery_createTable.sql" />
     <Content Include="Queries\SQLQuery_FillTable.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

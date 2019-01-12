@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using GameStore.Domain.Abstract;
+using GameStore.Domain.EMDB;
+using GameStore.Domain.EMDB.Repositories;
+using GameStore.Domain.EMDB.Repositories.Interfaces;
 using GameStore.Domain.Entities;
 using GameStore.WebUI.Models;
 
@@ -11,30 +10,26 @@ namespace GameStore.WebUI.Controllers
 {
     public class GameController : Controller
     {
-        private IGameRepository repository;
+        private IGameRepo repository;
         public int pageSize = 4;
 
-        public GameController(IGameRepository repo)
+        public GameController(IUnitOfWork repo)
         {
-            repository = repo;
+            repository = repo.Games;
         }
 
         public ViewResult List(string category, int page = 1)
         {
             GamesListViewModel model = new GamesListViewModel
             {
-                Games = repository.Games
-                    .Where(p => category == null || p.Genre == category)
-                    .OrderBy(game => game.GameId)
-                    .Skip((page - 1)*pageSize)
-                    .Take(pageSize),
+                Games = repository.GetGamesOnPage(category, page,pageSize),
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = category == null ?
-                        repository.Games.Count() :
-                        repository.Games.Where(game => game.Genre == category).Count()
+                        repository.GetAll().Count() :
+                        repository.Find(game => game.Genre == category).Count()
                 },
                 CurrentCategory = category
             };
@@ -43,17 +38,14 @@ namespace GameStore.WebUI.Controllers
 
         public FileContentResult GetImage(int gameId)
         {
-            Game game = repository.Games
-                .FirstOrDefault(g => g.GameId == gameId);
-
+            Game game = repository.Get(gameId);
+           
             if (game != null)
             {
                 return File(game.ImageData, game.ImageMimeType);
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 	}
 }

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
-using Moq;
 using Ninject;
 using GameStore.Domain.Abstract;
-using GameStore.Domain.Entities;
 using GameStore.Domain.Concrete;
+using GameStore.Domain.EMDB;
+using GameStore.Domain.EMDB.Repositories;
+using GameStore.Domain.EMDB.Repositories.Classes;
 using GameStore.WebUI.Infrastructure.Abstract;
 using GameStore.WebUI.Infrastructure.Concrete;
 
@@ -34,7 +35,8 @@ namespace GameStore.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IGameRepository>().To<EFGameRepository>();
+            //связь с БД
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             EmailSettings emailSettings = new EmailSettings
             {

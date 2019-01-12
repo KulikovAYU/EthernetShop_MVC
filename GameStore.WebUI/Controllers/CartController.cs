@@ -2,18 +2,21 @@
 using System.Web.Mvc;
 using GameStore.Domain.Entities;
 using GameStore.Domain.Abstract;
+using GameStore.Domain.EMDB;
+using GameStore.Domain.EMDB.Repositories;
+using GameStore.Domain.EMDB.Repositories.Interfaces;
 using GameStore.WebUI.Models;
 
 namespace GameStore.WebUI.Controllers
 {
     public class CartController : Controller
     {
-        private IGameRepository repository;
+        private IGameRepo repository;
         private IOrderProcessor orderProcessor;
 
-        public CartController(IGameRepository repo, IOrderProcessor processor)
+        public CartController(IUnitOfWork repo, IOrderProcessor processor)
         {
-            repository = repo;
+            repository = repo.Games;
             orderProcessor = processor;
         }
 
@@ -58,9 +61,9 @@ namespace GameStore.WebUI.Controllers
 
         public RedirectToRouteResult AddToCart(Cart cart, int gameId, string returnUrl)
         {
-            Game game = repository.Games
-                .FirstOrDefault(g => g.GameId == gameId);
-
+            //Game game = repository.Games
+            //    .FirstOrDefault(g => g.GameId == gameId);
+            Game game = repository.Get(gameId);
             if (game != null)
             {
                 cart.AddItem(game, 1);
@@ -70,9 +73,9 @@ namespace GameStore.WebUI.Controllers
 
         public RedirectToRouteResult RemoveFromCart(Cart cart, int gameId, string returnUrl)
         {
-            Game game = repository.Games
-                .FirstOrDefault(g => g.GameId == gameId);
-
+            //Game game = repository.Games
+            //    .FirstOrDefault(g => g.GameId == gameId);
+            Game game = repository.Get(gameId);
             if (game != null)
             {
                 cart.RemoveLine(game);
