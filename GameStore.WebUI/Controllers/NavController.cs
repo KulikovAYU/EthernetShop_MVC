@@ -8,7 +8,7 @@ namespace GameStore.WebUI.Controllers
 {
     public class NavController : Controller
     {
-        private IGameRepo repository;
+        private readonly IGameRepo repository;
 
         public NavController(IUnitOfWork repo)
         {

@@ -6,7 +6,7 @@ namespace GameStore.WebUI.Controllers
 {
     public class AccountController : Controller
     {
-        IAuthProvider authProvider;
+        readonly IAuthProvider authProvider;
         public AccountController(IAuthProvider auth)
         {
             authProvider = auth;

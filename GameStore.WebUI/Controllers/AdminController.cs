@@ -9,7 +9,7 @@ namespace GameStore.WebUI.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        IGameRepo repository;
+        readonly IGameRepo repository;
 
         public AdminController (IUnitOfWork repo)
         {

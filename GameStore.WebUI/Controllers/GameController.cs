@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using GameStore.Domain.EMDB;
-using GameStore.Domain.EMDB.Repositories;
 using GameStore.Domain.EMDB.Repositories.Interfaces;
 using GameStore.Domain.Entities;
 using GameStore.WebUI.Models;
@@ -10,7 +9,7 @@ namespace GameStore.WebUI.Controllers
 {
     public class GameController : Controller
     {
-        private IGameRepo repository;
+        private readonly IGameRepo repository;
         public int pageSize = 4;
 
         public GameController(IUnitOfWork repo)
