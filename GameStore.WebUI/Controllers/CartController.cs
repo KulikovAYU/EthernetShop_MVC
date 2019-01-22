@@ -8,6 +8,7 @@ using GameStore.WebUI.Models;
 
 namespace GameStore.WebUI.Controllers
 {
+    //контроллер корзины заказов: Ваша корзина
     public class CartController : Controller
     {
         private readonly IGameRepo repository;

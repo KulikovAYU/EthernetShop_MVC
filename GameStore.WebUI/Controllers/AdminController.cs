@@ -6,7 +6,9 @@ using GameStore.Domain.EMDB.Repositories.Interfaces;
 
 namespace GameStore.WebUI.Controllers
 {
-    [Authorize]
+    //Контроллер страницы администратора со списком игр, кнопками "добавить, редактировать и удалить игру"
+    [Authorize] //Данный атрибут проверяет аутентификацию на сервере, т.е. если нет лоогина или пароля, то не
+    //выполнятся методы действия
     public class AdminController : Controller
     {
         readonly IGameRepo repository;

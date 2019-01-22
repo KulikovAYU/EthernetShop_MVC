@@ -4,6 +4,7 @@ using GameStore.WebUI.Models;
 
 namespace GameStore.WebUI.Controllers
 {
+    //контроллер для входа в систему
     public class AccountController : Controller
     {
         readonly IAuthProvider authProvider;
@@ -17,12 +18,14 @@ namespace GameStore.WebUI.Controllers
             return View();
         }
 
+        //здесь сама авторизация
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
 
             if (ModelState.IsValid)
             {
+                //при удачной авторизации
                 if (authProvider.Authenticate(model.UserName, model.Password))
                 {
                     return Redirect(returnUrl ?? Url.Action("Index", "Admin"));

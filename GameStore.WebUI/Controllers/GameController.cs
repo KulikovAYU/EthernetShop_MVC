@@ -7,10 +7,11 @@ using GameStore.WebUI.Models;
 
 namespace GameStore.WebUI.Controllers
 {
+    //контроллер списка игр
     public class GameController : Controller
     {
         private readonly IGameRepo repository;
-        public int pageSize = 4;
+        public int pageSize = 4; //т.е. на одной странице м.б. отображены сведения о 4-х товарах
 
         public GameController(IUnitOfWork repo)
         {

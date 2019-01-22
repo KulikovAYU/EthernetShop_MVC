@@ -7,6 +7,14 @@ namespace GameStore.WebUI.HtmlHelpers
 {
     public static class PagingHelpers
     {
+        /// <summary>
+        /// Данный расширяющий метод генерирует HTML-разметку для набора ссылок на
+        /// страницы с использованием информации, в объекте PagingInfo
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="pagingInfo"></param>
+        /// <param name="pageUrl">делегат, который применяется для генерации ссылок, обеспечивающих просмотр других страниц.</param>
+        /// <returns></returns>
         public static MvcHtmlString PageLinks(this HtmlHelper html,
                                               PagingInfo pagingInfo,
                                               Func<int, string> pageUrl)
