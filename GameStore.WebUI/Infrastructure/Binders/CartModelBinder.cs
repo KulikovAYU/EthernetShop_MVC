@@ -3,14 +3,26 @@ using System.Web.Mvc;
 
 namespace GameStore.WebUI.Infrastructure.Binders
 {
+    /// <summary>
+    /// Настройка (см.Global asax):
+    /// будет реагировать в том случае, если необходимо инициализировать
+    ///  значение параметра типа Cart
+    /// </summary>
     public class CartModelBinder : IModelBinder
     {
         private const string sessionKey = "Cart";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="controllerContext">информация о запросе</param>
+        /// <param name="bindingContext">информация о привязке</param>
+        /// <returns>объект, который будет присвается аргументу метода действия</returns>
         public object BindModel(ControllerContext controllerContext,
             ModelBindingContext bindingContext)
         {
             // Получить объект Cart из сеанса
+
             Cart cart = null;
             if (controllerContext.HttpContext.Session != null)
             {

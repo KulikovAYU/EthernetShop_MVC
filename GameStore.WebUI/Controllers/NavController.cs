@@ -6,6 +6,9 @@ using GameStore.Domain.EMDB.Repositories.Interfaces;
 
 namespace GameStore.WebUI.Controllers
 {
+    /// <summary>
+    /// Контроллер навигатора категорий
+    /// </summary>
     public class NavController : Controller
     {
         private readonly IGameRepo repository;
