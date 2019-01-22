@@ -2,6 +2,7 @@
 using GameStore.Domain.EMDB.Repositories.DBContext;
 using GameStore.Domain.EMDB.Repositories.Interfaces;
 
+
 namespace GameStore.Domain.EMDB
 {
    public class UnitOfWork : IUnitOfWork
@@ -19,6 +20,7 @@ namespace GameStore.Domain.EMDB
             m_context.SaveChanges();
         }
 
+
         public int Complete()
         {
             return m_context.SaveChanges();
@@ -30,11 +32,13 @@ namespace GameStore.Domain.EMDB
         private void IntitializeRepo()
         {
             Games = new GameRepo(m_context);
-
+            Accounts = new AccountRepo(m_context);
             //TODO: инстанцируйте новые репозитории
         }
 
         //Interfaces
         public IGameRepo Games { get; private set; }
+
+        public IAccountRepo Accounts { get; private set; }
     }
 }

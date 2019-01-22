@@ -1,4 +1,4 @@
-﻿@model GameStore.WebUI.Models.LoginViewModel
+﻿@model GameStore.Domain.Entities.AccountAdm
 
 @{
     ViewBag.Title = "Login";
@@ -11,17 +11,24 @@
     </div>
     <div class="panel-body">
         <p class="lead">Пожалуйста, войдите в систему, чтобы получить доступ к админ. панели:</p>
-        @using (Html.BeginForm())
+        
+         @*@using (Html.BeginForm("Edit", "Admin",
+        FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
         {
-            @Html.ValidationSummary()
-            <div class="form-group">
-                <label>Имя пользователя:</label>
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-            </div>
-            <div class="form-group">
-                <label>Пароль:</label>
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
             <input type="submit" value="Войти" class="btn btn-primary" />
         }
     </div>

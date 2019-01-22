@@ -3,6 +3,7 @@ using GameStore.Domain.Entities;
 using System.Web;
 using GameStore.Domain.EMDB;
 using GameStore.Domain.EMDB.Repositories.Interfaces;
+using WebMatrix.WebData;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -67,5 +68,6 @@ namespace GameStore.WebUI.Controllers
             }
             return RedirectToAction("Index");
         }
-	}
+
+    }
 }

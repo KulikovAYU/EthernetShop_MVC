@@ -7,6 +7,7 @@ using GameStore.WebUI.Models;
 
 namespace GameStore.WebUI.Controllers
 {
+
     //контроллер списка игр
     public class GameController : Controller
     {

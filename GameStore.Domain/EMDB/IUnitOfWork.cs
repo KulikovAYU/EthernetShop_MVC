@@ -11,6 +11,9 @@ namespace GameStore.Domain.EMDB
         //Репозиторий игр
         IGameRepo Games { get; }
 
+        //Репки для аккаунтов
+        IAccountRepo Accounts { get; }
+
         //TODO: разместите здесь интерфейсы для репозиториев
 
 

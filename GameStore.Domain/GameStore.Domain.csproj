@@ -30,11 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -76,15 +76,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IOrderProcessor.cs" />
+    <Compile Include="EMDB\Repositories\Classes\AccountRepo.cs" />
     <Compile Include="EMDB\Repositories\DBContext\EFDbContext.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="EMDB\IUnitOfWork.cs" />
+    <Compile Include="EMDB\Repositories\Interfaces\IAccountRepo.cs" />
     <Compile Include="EMDB\UnitOfWork.cs" />
     <Compile Include="EMDB\Repositories\Classes\GameRepo.cs" />
     <Compile Include="EMDB\Repositories\Classes\RepositoryBase.cs" />
     <Compile Include="EMDB\Repositories\Interfaces\IGameRepo.cs" />
     <Compile Include="EMDB\Repositories\Interfaces\IReporitoryBase.cs" />
     <Compile Include="EMDButils\StaticHelper.cs" />
+    <Compile Include="Entities\AccountModels.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
