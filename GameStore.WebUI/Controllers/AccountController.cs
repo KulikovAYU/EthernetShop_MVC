@@ -56,7 +56,7 @@ namespace GameStore.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel adm, string returnUrl)
+        public ActionResult Login(AccountAdm adm, string returnUrl)
         {
 
            // WebSecurity.CreateUserAndAccount(adm.UserName, adm.Password); //чтобы лишний раз не создавать аккаунт (т.к. формируется хэш)
