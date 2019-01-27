@@ -7,7 +7,7 @@ namespace GameStore.Domain.EMDB.Repositories.Interfaces
     {
         //получить все категории игр
         IEnumerable<string> AllCatergories { get; }
-        //сохранить игру в БД (с сохранением изменений)
+        //сохранить игру в БД (либо добавление либо удаление)
         int SaveGame(Game game);
 
         /// <summary>

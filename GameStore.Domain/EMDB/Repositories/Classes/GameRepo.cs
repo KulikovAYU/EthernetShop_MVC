@@ -17,13 +17,13 @@ namespace GameStore.Domain.EMDB.Repositories.Classes
         //TODO: добавить сюда методы для работы с играми
         public IEnumerable<string> AllCatergories => GetAll().Select(game => game.Genre).Distinct().OrderBy(x => x);
 
-        //Сохранить игру
+        //Сохранить игру: либо создастя новая игра или же обновится существующая
         public int SaveGame(Game game)
         {
-            Add(game);
+            AddOrUpdate(game);
             return SaveChanges();
         }
-   
+
         //удалить иггру
         public int RemoveGame(Game game)
         {

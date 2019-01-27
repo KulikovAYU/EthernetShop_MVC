@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using GameStore.Domain.EMDB;
 using GameStore.Domain.Entities;
-using GameStore.WebUI.Models;
 using MvcInternetApplication.Filters;
 using WebMatrix.WebData;
 

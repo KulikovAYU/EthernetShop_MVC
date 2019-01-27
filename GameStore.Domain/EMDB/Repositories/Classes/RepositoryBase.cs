@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using GameStore.Domain.EMDB.Repositories.Interfaces;
@@ -42,6 +43,12 @@ namespace GameStore.Domain.EMDB.Repositories.Classes
         {
             if (entity == null) return;
             m_context.Set<TEntity>().Add(entity);
+        }
+
+        public void AddOrUpdate(TEntity entity)
+        {
+            if (entity == null) return;
+            m_context.Set<TEntity>().AddOrUpdate(entity);
         }
 
         public void AddRange(IEnumerable<TEntity> entities)

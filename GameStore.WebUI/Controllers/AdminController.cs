@@ -3,7 +3,6 @@ using GameStore.Domain.Entities;
 using System.Web;
 using GameStore.Domain.EMDB;
 using GameStore.Domain.EMDB.Repositories.Interfaces;
-using WebMatrix.WebData;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -34,12 +33,7 @@ namespace GameStore.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (image != null)
-                {
-                    game.ImageMimeType = image.ContentType;
-                    game.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(game.ImageData, 0, image.ContentLength);
-                }
+                CopyImageBytes(game, image);
                 repository.SaveGame(game);
                 TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", game.Name);
                 return RedirectToAction("Index");
@@ -53,10 +47,27 @@ namespace GameStore.WebUI.Controllers
 
         public ViewResult Create()
         {
-            return View("Edit", new Game());
+            return View("NewGame", new Game());
         }
 
         [HttpPost]
+        public ActionResult Create(Game game, HttpPostedFileBase image = null)
+        {
+            if (ModelState.IsValid)
+            {
+                CopyImageBytes(game, image);
+                repository.SaveGame(game);
+                TempData["message"] = string.Format("Новая игра \"{0}\" была добавлена к базе данных", game.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // Что-то не так со значениями данных
+                return View(game);
+            }
+        }
+
+       [HttpPost]
         public ActionResult Delete(int gameId)
         {
             Game deletedGame = null;
@@ -67,6 +78,17 @@ namespace GameStore.WebUI.Controllers
                     deletedGame.Name);
             }
             return RedirectToAction("Index");
+        }
+
+        //копирует изображение
+        void CopyImageBytes(Game game, HttpPostedFileBase image)
+        {
+            if (image != null)
+            {
+                game.ImageMimeType = image.ContentType;
+                game.ImageData = new byte[image.ContentLength];
+                image.InputStream.Read(game.ImageData, 0, image.ContentLength);
+            }
         }
 
     }
