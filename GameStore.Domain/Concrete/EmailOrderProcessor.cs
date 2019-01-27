@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using GameStore.Domain.Abstract;
@@ -85,7 +86,11 @@ namespace GameStore.Domain.Concrete
                     mailMessage.HeadersEncoding = Encoding.UTF8;
                 }
 
-                smtpClient.Send(mailMessage);
+                if (File.Exists(emailSettings.FileLocation))
+                {
+                    smtpClient.Send(mailMessage);
+                }
+              
             }
         }
     }
